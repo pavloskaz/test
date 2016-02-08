@@ -34,6 +34,7 @@ print("Script ID %d, run ID %d" % (script_id, run_id))
 script_run = requests.get(urllib.parse.urljoin(endpoint, '/scripts/sql/%d/runs/%d' % (script_id, run_id)),
                           auth=requests.auth.HTTPBasicAuth(api_key, ''),
                           json={}).json()
+
 # wait for the script to run
 while script_run['state'] in ('queued', 'running'):
     time.sleep(10)
